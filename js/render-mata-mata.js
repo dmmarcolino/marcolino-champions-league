@@ -5,6 +5,14 @@ const R16_IDS = ['R16-1', 'R16-2', 'R16-3', 'R16-4', 'R16-5', 'R16-6', 'R16-7', 
 const QF_IDS = ['QF-1', 'QF-2', 'QF-3', 'QF-4'];
 const SF_IDS = ['SF-1', 'SF-2'];
  
+// Ordem de EXIBIÇÃO no quadro visual (diferente da ordem 1x16,2x15... da lista de
+// jogos abaixo): aqui os confrontos ficam agrupados de forma que dois lados que só
+// podem se encontrar depois (ex.: seed 1 e seed 2, que só se enfrentam na final)
+// apareçam em metades separadas do quadro, como numa chave de verdade.
+const BRACKET_R16_ORDER = ['R16-1', 'R16-8', 'R16-4', 'R16-5', 'R16-2', 'R16-7', 'R16-3', 'R16-6'];
+const BRACKET_QF_ORDER = ['QF-1', 'QF-4', 'QF-2', 'QF-3'];
+const BRACKET_SF_ORDER = ['SF-1', 'SF-2'];
+ 
 const SEED_ANCHORS = computeSeedAnchors();
  
 function pairNamesForTie(tie) {
@@ -82,9 +90,9 @@ async function draw() {
   const ties = buildKnockoutState(seedMap, winnersRanked, runnersRanked, scores);
  
   document.getElementById('bracket-slot').innerHTML =
-    bracketColumnHtml('Oitavas', R16_IDS, ties) +
-    bracketColumnHtml('Quartas', QF_IDS, ties) +
-    bracketColumnHtml('Semis', SF_IDS, ties) +
+    bracketColumnHtml('Oitavas', BRACKET_R16_ORDER, ties) +
+    bracketColumnHtml('Quartas', BRACKET_QF_ORDER, ties) +
+    bracketColumnHtml('Semis', BRACKET_SF_ORDER, ties) +
     bracketColumnHtml('Final', ['FINAL'], ties);
  
   let html = '<div class="round-heading">Oitavas de final</div>';
