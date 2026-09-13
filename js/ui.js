@@ -33,11 +33,19 @@ function teamLink(id, extraClass) {
 
 // Painel de placar de um jogo simples (fase de grupos ou jogo único do mata-mata).
 // homeLabel/awayLabel podem ser nomes de time reais ou um rótulo provisório ("Seed 5", "Vencedor QF-1"...).
+function tagSpan(id) {
+  if (!id) return '';
+  const tag = teamTag(id);
+  if (!tag) return '';
+  const cls = tag[0] === 'H' ? 'team-tag team-tag--h' : 'team-tag team-tag--d';
+  return `<span class="${cls}">${tag}</span>`;
+}
+
 function matchRow({ matchId, homeId, awayId, homeLabel, awayLabel, score, editable, extraNote }) {
   const gc = score && score.golsCasa != null ? score.golsCasa : '';
   const gv = score && score.golsVisitante != null ? score.golsVisitante : '';
-  const homeHtml = homeId ? teamLink(homeId) : `<span class="tbd">${homeLabel || '?'}</span>`;
-  const awayHtml = awayId ? teamLink(awayId) : `<span class="tbd">${awayLabel || '?'}</span>`;
+  const homeHtml = homeId ? `${teamLink(homeId)}${tagSpan(homeId)}` : `<span class="tbd">${homeLabel || '?'}</span>`;
+  const awayHtml = awayId ? `${tagSpan(awayId)}${teamLink(awayId)}` : `<span class="tbd">${awayLabel || '?'}</span>`;
 
   const inputs = editable
     ? `

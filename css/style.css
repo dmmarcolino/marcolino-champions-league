@@ -236,6 +236,20 @@ a:hover { text-decoration: underline; }
 .team-link { color: var(--text); font-weight: 500; }
 .team-link:hover { color: var(--gold-soft); }
 
+.team-tag {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin: 0 3px;
+  vertical-align: middle;
+}
+.team-tag--h { background: rgba(212, 175, 55, 0.18); color: var(--gold-soft); }
+.team-tag--d { background: rgba(52, 168, 83, 0.18); color: #7ed99a; }
+
 /* ---------- bracket ---------- */
 
 .bracket { display: flex; gap: 22px; overflow-x: auto; padding: 8px 0 20px; }

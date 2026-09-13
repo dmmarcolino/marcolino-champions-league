@@ -115,3 +115,23 @@ function isDanielTeam(id) {
 function teamName(id) {
   return (TEAMS[id] && TEAMS[id].name) || id;
 }
+
+// Etiqueta curta indicando dono + prioridade, ex.: "H06" (Heitor, 6o na Champions),
+// "D01" (Daniel, 1o na Champions), "HE1" (Heitor, 1o na Europa League),
+// "DC2" (Daniel, 2o na Conference League). Retorna '' se o time não for
+// reconhecido em nenhuma das listas (não deveria acontecer).
+function teamTag(id) {
+  let idx = HEITOR_TEAMS.indexOf(id);
+  if (idx !== -1) return 'H' + String(idx + 1).padStart(2, '0');
+  idx = DANIEL_TEAMS.indexOf(id);
+  if (idx !== -1) return 'D' + String(idx + 1).padStart(2, '0');
+  idx = EUROPA_OUTROS_HEITOR.indexOf(id);
+  if (idx !== -1) return 'HE' + (idx + 1);
+  idx = EUROPA_OUTROS_DANIEL.indexOf(id);
+  if (idx !== -1) return 'DE' + (idx + 1);
+  idx = CONFERENCE_OUTROS_HEITOR.indexOf(id);
+  if (idx !== -1) return 'HC' + (idx + 1);
+  idx = CONFERENCE_OUTROS_DANIEL.indexOf(id);
+  if (idx !== -1) return 'DC' + (idx + 1);
+  return '';
+}

@@ -40,10 +40,12 @@ function bracketColumnHtml(title, tieIds, ties, seedAnchors) {
     const winner = tie.winner;
     const aggText = tie.round !== 'FINAL' && tie.aggBetter != null
       ? `<span class="agg">${tie.aggBetter}-${tie.aggWorse}</span>` : '';
+    const aTag = aId ? tagSpan(aId) : '';
+    const bTag = bId ? tagSpan(bId) : '';
     return `
       <div class="bracket-tie">
-        <div class="bracket-team ${winner && winner === aId ? 'is-winner' : ''}">${aName} ${winner && winner === aId ? aggText : ''}</div>
-        <div class="bracket-team ${winner && winner === bId ? 'is-winner' : ''}">${bName} ${winner && winner === bId ? aggText : ''}</div>
+        <div class="bracket-team ${winner && winner === aId ? 'is-winner' : ''}">${aName}${aTag} ${winner && winner === aId ? aggText : ''}</div>
+        <div class="bracket-team ${winner && winner === bId ? 'is-winner' : ''}">${bName}${bTag} ${winner && winner === bId ? aggText : ''}</div>
       </div>`;
   }).join('');
   return `<div class="bracket-round"><div class="bracket-round-title">${title}</div>${cards}</div>`;
