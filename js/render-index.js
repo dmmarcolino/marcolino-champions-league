@@ -7,14 +7,34 @@ function rosterListHtml(ids) {
 document.getElementById('roster-slot').innerHTML = `
   <div class="roster-grid">
     <div class="roster-card">
-      <h2>Times do Heitor</h2>
+      <h2>Times do Heitor — Champions League</h2>
       <p class="roster-sub">Em ordem de prioridade</p>
       ${rosterListHtml(HEITOR_TEAMS)}
     </div>
     <div class="roster-card">
-      <h2>Times do Daniel</h2>
+      <h2>Times do Daniel — Champions League</h2>
       <p class="roster-sub">Em ordem de prioridade</p>
       ${rosterListHtml(DANIEL_TEAMS)}
+    </div>
+    <div class="roster-card">
+      <h2>Times do Heitor — Europa League</h2>
+      <p class="roster-sub">Entram direto nas oitavas</p>
+      ${rosterListHtml(EUROPA_OUTROS_HEITOR)}
+    </div>
+    <div class="roster-card">
+      <h2>Times do Daniel — Europa League</h2>
+      <p class="roster-sub">Entram direto nas oitavas</p>
+      ${rosterListHtml(EUROPA_OUTROS_DANIEL)}
+    </div>
+    <div class="roster-card">
+      <h2>Times do Heitor — Conference League</h2>
+      <p class="roster-sub">Entram direto nas oitavas</p>
+      ${rosterListHtml(CONFERENCE_OUTROS_HEITOR)}
+    </div>
+    <div class="roster-card">
+      <h2>Times do Daniel — Conference League</h2>
+      <p class="roster-sub">Entram direto nas oitavas</p>
+      ${rosterListHtml(CONFERENCE_OUTROS_DANIEL)}
     </div>
   </div>`;
 

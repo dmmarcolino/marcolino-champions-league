@@ -14,14 +14,24 @@
   <h1 class="page-title" id="team-title">Time</h1>
   <p class="page-sub" id="team-sub"></p>
 
-  <div class="panel">
+  <div class="panel" id="group-panel">
     <h3>Jogos da fase de grupos</h3>
     <div id="group-matches-slot" class="match-list"></div>
   </div>
 
-  <div class="panel" id="ko-panel" style="display:none;">
-    <h3>Jogos do mata-mata</h3>
-    <div id="ko-matches-slot" class="match-list"></div>
+  <div class="panel" id="ko-champions-panel" style="display:none;">
+    <h3>Jogos do mata-mata — Champions League</h3>
+    <div id="ko-champions-slot" class="match-list"></div>
+  </div>
+
+  <div class="panel" id="ko-europa-panel" style="display:none;">
+    <h3>Jogos do mata-mata — Europa League</h3>
+    <div id="ko-europa-slot" class="match-list"></div>
+  </div>
+
+  <div class="panel" id="ko-conference-panel" style="display:none;">
+    <h3>Jogos do mata-mata — Conference League</h3>
+    <div id="ko-conference-slot" class="match-list"></div>
   </div>
 </div>
 <footer class="site-footer">Marcolino Champions League</footer>
@@ -32,6 +42,7 @@
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/ui.js"></script>
+<script src="js/knockout-common.js"></script>
 <script src="js/render-time.js"></script>
 </body>
 </html>

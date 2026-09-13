@@ -21,6 +21,8 @@ function renderNav(active) {
         </div>
         <a href="classificacao.html" class="${active === 'classificacao' ? 'is-active' : ''}">Classificação geral</a>
         <a href="mata-mata.html" class="${active === 'mata-mata' ? 'is-active' : ''}">Mata-mata</a>
+        <a href="europa.html" class="${active === 'europa' ? 'is-active' : ''}">Europa League</a>
+        <a href="conference.html" class="${active === 'conference' ? 'is-active' : ''}">Conference League</a>
       </nav>
     </header>`;
 }

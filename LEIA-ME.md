@@ -56,32 +56,36 @@ qualquer pessoa que abrir o site depois já vê o placar atualizado
 - A classificação de cada grupo, a classificação geral e a chave do mata-mata são recalculadas automaticamente a cada vez que a página é aberta, com base nos placares já salvos.
 - Na página inicial, clique no nome de qualquer time para ver só os jogos dele.
 - Na página do mata-mata, a numeração de "semeadura" (1 a 16) só fica definitiva depois que **todos** os 96 jogos da fase de grupos tiverem placar. Antes disso, o site mostra um aviso de que a numeração é provisória e ela pode se reorganizar conforme os grupos forem terminando.
+- Essa atualização não mexe em nada dos placares já salvos na planilha — os jogos da fase de grupos que vocês já lançaram continuam valendo normalmente. Se algum jogo do mata-mata da Champions já tinha um placar de pênaltis salvo de uma versão anterior do site, ele simplesmente passa a ser ignorado (não afeta o resultado, que agora é decidido por campanha em caso de empate).
 
 ## Decisões que tomei e que você pode querer revisar
 
-Como alguns pontos não foram 100% especificados, assumi o seguinte (é só me avisar se quiser mudar algo — é uma linha de código para ajustar):
+Como alguns pontos não foram 100% especificados, assumi o seguinte (é só me avisar se quiser mudar algo):
 
-- **Desempate por "sorteio":** como o site não pode fazer um sorteio de verdade, usei ordem alfabética como critério neutro final, tanto dentro do grupo quanto na semeadura geral (1–16) entre os primeiros/segundos colocados de grupos diferentes. Se dois times ficarem exatamente empatados até esse ponto, dá pra fazer o sorteio real de vocês dois e eu troco manualmente.
-- **Semeadura geral (1–8 entre primeiros, 9–16 entre segundos):** usei os mesmos critérios do desempate de grupo (pontos, saldo, gols marcados), já que times de grupos diferentes não têm confronto direto entre si.
-- **Mando de campo nas quartas e semis:** você confirmou que são ida e volta como as oitavas. Para decidir quem joga a volta em casa, estendi a mesma regra das oitavas ("melhor campanha decide em casa"), usando a posição de semeadura original (1 a 16) de cada time.
-- **Final:** jogo único, como você pediu. Se der empate, previ pênaltis (não foi dito o que acontece em caso de empate na final — se preferirem outra solução, tipo prorrogação ou até time visitante ficar com o troféu por sorteio, é só avisar).
-- **Grupo A:** vi que os 4 times do grupo A (Dortmund, Lille, Atlético de Madrid, Feyenoord) são todos da lista do Heitor — não é erro do site, é só como caiu a distribuição dos 32 times entre vocês dois.
+- **Desempate por "sorteio":** ordem alfabética como critério neutro final (na fase de grupos, depois de aplicar a exclusão do(s) pior(es) time(s); e na semeadura geral entre grupos diferentes, que não tem confronto direto possível).
+- **Semeadura geral (1–8 entre primeiros, 9–16 entre segundos; e igual para os 3os/4os colocados na Europa/Conference):** pontos, saldo, gols marcados, sorteio — times de grupos diferentes não têm confronto direto entre si.
+- **Mando de campo e empate no mata-mata:** melhor campanha decide em casa na volta e avança automaticamente se o agregado terminar empatado (sem pênaltis) — vale para as 3 competições, oitavas/quartas/semis e também a final em caso de empate no jogo único.
+- **Sorteio das oitavas da Europa League e Conference League:** os 3os/4os colocados da Champions são ranqueados por campanha (pontos/saldo/gols); os "outros 8 times" recebem seeds 9–12 (Heitor, na ordem que você deu) e 13–16 (Daniel, na ordem que você deu). O cruzamento prioriza time-do-Heitor × time-do-Daniel; quando sobra time do mesmo dono dos dois lados (por causa do total de times Heitor/Daniel não fechar 8-8), esses times sobrando se enfrentam entre si — do jeito que você descreveu.
+- **Grupo A:** os 4 times (Dortmund, Lille, Atlético de Madrid, Feyenoord) são todos da lista do Heitor — não é erro do site, é só como caiu a distribuição dos 32 times entre vocês dois.
 
 ## Estrutura dos arquivos
 
 ```
-index.html              → página inicial
-grupo.html               → página de um grupo (usa ?g=A até ?g=H)
-classificacao.html       → classificação de todos os grupos
-mata-mata.html            → chave + lista de jogos da fase eliminatória
-time.html                 → jogos de um time (usado pelos links "clique no nome do time")
-css/style.css              → visual do site
-js/data.js                 → grupos, times e as listas de prioridade de vocês
-js/fixtures.js              → gera a tabela de jogos da fase de grupos
-js/logic.js                  → classificação, desempates, semeadura e progressão do mata-mata
-js/config.js                  → cole aqui a URL do Apps Script
-js/api.js                      → conversa com o Apps Script
-js/ui.js                        → componentes de tela (placar, links de time, etc.)
-js/render-*.js                   → lógica específica de cada página
-apps-script/Code.gs                → cole este código no Apps Script da sua planilha
+index.html                 → página inicial (times das 3 competições + links)
+grupo.html                  → página de um grupo da Champions (usa ?g=A até ?g=H)
+classificacao.html          → classificação dos 8 grupos da Champions
+mata-mata.html               → mata-mata da Champions League
+europa.html                   → mata-mata da Europa League
+conference.html                → mata-mata da Conference League
+time.html                       → jogos de um time em todas as competições que ele disputa
+css/style.css                    → visual do site
+js/data.js                        → grupos, times e listas de prioridade (Champions/Europa/Conference)
+js/fixtures.js                     → gera a tabela de jogos da fase de grupos da Champions
+js/logic.js                         → classificação, desempates, semeadura e progressão do mata-mata
+js/knockout-common.js                → chave visual + lista de jogos, compartilhado pelas 3 competições
+js/config.js                          → cole aqui a URL do Apps Script
+js/api.js                              → conversa com o Apps Script
+js/ui.js                                → componentes de tela (placar, links de time, navegação)
+js/render-*.js                           → lógica específica de cada página
+apps-script/Code.gs                       → cole este código no Apps Script da sua planilha
 ```
